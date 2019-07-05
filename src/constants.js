@@ -42,7 +42,7 @@ const TEN = {
 	cinquantotto: 58,
 	sessantuno: 61,
 	sessantotto: 68,
-	settanuno: 71,
+	settantuno: 71,
 	settantotto: 78,
 	ottantuno: 81,
 	ottantotto: 88,
