@@ -36,6 +36,68 @@ describe('Computing Numbers from tokenized array', () => {
   });
 });
 
+describe('Getting millions', () => {
+  it('multiplies initial sum for one million and empties string (singular word)', () => {
+    expect(iWtoN.getMillion('milione', 6)).toEqual({ str: '', sum: 6000000 });
+  });
+
+  it('multiplies initial sum for one million and empties string (plural word)', () => {
+    expect(iWtoN.getMillion('milioni', 25)).toEqual({ str: '', sum: 25000000 });
+  });
+});
+
+describe('Getting thousands', () => {
+  it('sums to initial sum a thousand and empties string (singular word, sum = 0)', () => {
+    expect(iWtoN.getMillion('mille', 0)).toEqual({ str: '', sum: 1000 });
+  });
+
+  it('sums to initial sum a thousand and empties string (singular word, sum > 0)', () => {
+    expect(iWtoN.getMillion('mille', 1000000)).toEqual({ str: '', sum: 1001000 });
+  });
+
+  it('sums to initial sum given thousands and empties string (plural word, sum = 0)', () => {
+    expect(iWtoN.getMillion('settemila', 0)).toEqual({ str: '', sum: 7000 });
+  });
+
+  it('sums to initial sum given thousands and empties string (plural word, sum > 0)', () => {
+    expect(iWtoN.getMillion('novantamila', 2000000)).toEqual({ str: '', sum: 2090000 });
+  });
+});
+
+describe('Getting hundreds', () => {
+  it('sums to initial sum a hundred and empties string (singular word)', () => {
+    expect(iWtoN.getMillion('cento', 0)).toEqual({ str: '', sum: 100 });
+  });
+
+  it('sums to initial sum given thousands and empties string (plural word, sum = 0)', () => {
+    expect(iWtoN.getMillion('duecento', 0)).toEqual({ str: '', sum: 200 });
+  });
+
+  it('sums to initial sum given thousands and empties string (plural word, sum > 0)', () => {
+    expect(iWtoN.getMillion('trecento', 70000)).toEqual({ str: '', sum: 70300 });
+  });
+});
+
+describe('Getting tens', () => {
+  it('sums to initial sum given ten word and empties string (sum = 0)', () => {
+    expect(iWtoN.getMillion('quaranta', 0)).toEqual({ str: '', sum: 40 });
+  });
+
+  it('sums to initial sum given ten word and empties string (sum > 0)', () => {
+    expect(iWtoN.getMillion('ventitré', 2000)).toEqual({ str: '', sum: 2023 });
+  });
+});
+
+describe('Getting units', () => {
+  it('sums to initial sum given unit and empties string (sum = 0)', () => {
+    expect(iWtoN.getMillion('tre', 0)).toEqual({ str: '', sum: 3 });
+  });
+
+  it('sums to initial sum given unit and empties string (sum > 0)', () => {
+    expect(iWtoN.getMillion('sette', 700)).toEqual({ str: '', sum: 707 });
+  });
+});
+
 describe('Converting words to numbers', () => {
   it('converts milleduecentosettantaquattro', () => {
     expect(iWtoN.convert('milleduecentosettantaquattro')).toEqual(1274);
@@ -113,5 +175,3 @@ describe('Converting words to numbers', () => {
     expect(iWtoN.convert('meno due milioni e sette')).toEqual(-2000007);
   });
 });
-
-// TODO implement test for methods getUnit, getTens, getHundred, getThousands, getMillion

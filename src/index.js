@@ -12,7 +12,7 @@ const iWtoN = {
 
 		array.forEach(string => {
 			if (!isNaN(+string)) {
-				// cast to number if it's a number
+				// casts to number if it's a number
 				result.push(+string);
 			} else if (string !== JOINER) {
 				result.push(string);
@@ -40,7 +40,7 @@ const iWtoN = {
 		return obj.sum;
 	},
 	getMillion: function (str, sum) {
-		// magnitude 1.000.000
+		// magnitude 10^6
 		if (str.indexOf('milione') !== -1) {
 			sum *= MAGNITUDE['milione'];
 			str = str.replace('milione', '');
@@ -56,7 +56,7 @@ const iWtoN = {
 		}
 	},
 	getThousands: function (str, sum) {
-		// magnitude 1.000
+		// magnitude 10^3
 		if (str.indexOf('mille') !== -1) {
 			sum += MAGNITUDE['mille'];
 			str = str.replace('mille', '');
@@ -72,7 +72,7 @@ const iWtoN = {
 		}
 	},
 	getHundreds: function (str, sum) {
-		// magnitude 100
+		// magnitude 10^2
 		if (str.indexOf('cento') !== -1) {
 			sum += (str.indexOf('cento') === 0 ? 1 : this.getUnit(str.substring(0, str.indexOf('cento')), 0).sum) * MAGNITUDE['cento'];
 			str = str.substring(str.indexOf('cento') + 5, str.length);
@@ -85,7 +85,7 @@ const iWtoN = {
 		}
 	},
 	getTens: function (str, sum) {
-		// magnitude 10
+		// magnitude 10^1
 		let found = false;
 		for (let i = 0; i < TEN_KEYS.length && !found; i++) {
 			if (str.indexOf(TEN_KEYS[i]) !== -1) {
