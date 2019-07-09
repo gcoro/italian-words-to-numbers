@@ -5,15 +5,18 @@ const iWtoN = {
 		return this.compute(this.tokenize(words));
 	},
 	tokenize: function (words) {
-		const array = words.split(' ')
-		const result = []
-		array.forEach(function (string) {
-			if (!isNaN(+string)) { // cast to number if it's a number
-				result.push(+string)
+		const array = words.split(' ');
+		const result = [];
+
+		array.forEach(string => {
+			if (!isNaN(+string)) {
+				// cast to number if it's a number
+				result.push(+string);
 			} else if (string !== JOINERS[0]) {
 				result.push(string);
 			}
-		})
+		});
+
 		return result;
 	},
 	compute: function (tokens) {
@@ -24,20 +27,24 @@ const iWtoN = {
 		tokens.forEach(token => {
 			obj.str = token;
 
-			// works up to 999.999.999
-			obj = this.getMillion(obj.str, obj.sum);
+			if (typeof token === 'number') {
+				obj.sum += token;
+			} else {
+				// works up to 999.999.999
+				obj = this.getMillion(obj.str, obj.sum);
+			}
 		});
 
 		return obj.sum;
 	},
 	getMillion: function (str, sum) {
 		// magnitude 1.000.000
-		if(str.indexOf('milione') !== -1) {
+		if (str.indexOf('milione') !== -1) {
 			sum *= 1000000;
-			str = str.replace('milione','');
-		} else if(str.indexOf('milioni') !== -1) {
+			str = str.replace('milione', '');
+		} else if (str.indexOf('milioni') !== -1) {
 			sum *= 1000000;
-			str = str.replace('milioni','');
+			str = str.replace('milioni', '');
 		}
 
 		if (str !== '') {
