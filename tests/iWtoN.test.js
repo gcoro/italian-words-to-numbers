@@ -72,6 +72,31 @@ describe('Converting words to numbers', function () {
     var actual = iWtoN.convert('due');
     expect(actual).toEqual(2);
   });
+
+  it('converts un milione', function () {
+    var actual = iWtoN.convert('un milione');
+    expect(actual).toEqual(1000000);
+  });
+
+  it('converts due milioni e due', function () {
+    var actual = iWtoN.convert('due milioni e due');
+    expect(actual).toEqual(2000002);
+  });
+
+  it('converts tre milioni novecentotré', function () {
+    var actual = iWtoN.convert('tre milioni novecentotré');
+    expect(actual).toEqual(3000903);
+  });
+
+  it('converts un milione e millesei', function () {
+    var actual = iWtoN.convert('un milione e millesei');
+    expect(actual).toEqual(1001006);
+  });
+
+  it('converts novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove', function () {
+    var actual = iWtoN.convert('novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove');
+    expect(actual).toEqual(999999999);
+  });
 });
 
 // TODO implement test for methods compute, getUnit, getTens, getHundred, getThousands

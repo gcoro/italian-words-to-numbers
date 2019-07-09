@@ -1,14 +1,13 @@
 # italian-words-to-numbers
 Javascript library to translate Italian written numbers to its numeric value.
 
-(WIP ... only works with numbers up to 999.999 for now)
+Works with correctly spelled numbers up to a value of 999.999.999 (novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove).
 
 ## Usage 
 ```javascript
 const iWtoN = require('italian-words-to-numbers');
 
-const number = iWtoN.convert('settecentosettantotto');
-// number = 778
+const number = iWtoN.convert('settecentosettantotto'); // => 778
 ```
 
 

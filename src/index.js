@@ -5,8 +5,8 @@ const iWtoN = {
 		return this.compute(this.tokenize(words));
 	},
 	tokenize: function (words) {
-		var array = words.split(' ')
-		var result = []
+		const array = words.split(' ')
+		const result = []
 		array.forEach(function (string) {
 			if (!isNaN(+string)) { // cast to number if it's a number
 				result.push(+string)
@@ -24,14 +24,30 @@ const iWtoN = {
 		tokens.forEach(token => {
 			obj.str = token;
 
-			// only works up to 999999
-			obj = this.getThousands(obj.str, obj.sum);
+			// works up to 999.999.999
+			obj = this.getMillion(obj.str, obj.sum);
 		});
 
 		return obj.sum;
 	},
+	getMillion: function (str, sum) {
+		// magnitude 1.000.000
+		if(str.indexOf('milione') !== -1) {
+			sum *= 1000000;
+			str = str.replace('milione','');
+		} else if(str.indexOf('milioni') !== -1) {
+			sum *= 1000000;
+			str = str.replace('milioni','');
+		}
+
+		if (str !== '') {
+			return this.getThousands(str, sum);
+		} else {
+			return { str, sum };
+		}
+	},
 	getThousands: function (str, sum) {
-		// magnitude 1000
+		// magnitude 1.000
 		if (str.indexOf('mille') !== -1) {
 			sum += 1000;
 			str = str.replace('mille', '');
