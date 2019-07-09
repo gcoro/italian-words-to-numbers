@@ -1,8 +1,10 @@
-const { UNIT, TEN, JOINERS, TEN_KEYS } = require('./constants');
+const { UNIT, TEN, JOINER, NEGATIVE, TEN_KEYS, MAGNITUDE } = require('./constants');
 
 const iWtoN = {
 	convert: function (words) {
-		return this.compute(this.tokenize(words));
+		return words.indexOf(NEGATIVE) === 0
+			? -this.compute(this.tokenize(words.substring(NEGATIVE.length, words.length)))
+			: this.compute(this.tokenize(words));
 	},
 	tokenize: function (words) {
 		const array = words.split(' ');
@@ -12,7 +14,7 @@ const iWtoN = {
 			if (!isNaN(+string)) {
 				// cast to number if it's a number
 				result.push(+string);
-			} else if (string !== JOINERS[0]) {
+			} else if (string !== JOINER) {
 				result.push(string);
 			}
 		});
@@ -40,10 +42,10 @@ const iWtoN = {
 	getMillion: function (str, sum) {
 		// magnitude 1.000.000
 		if (str.indexOf('milione') !== -1) {
-			sum *= 1000000;
+			sum *= MAGNITUDE['milione'];
 			str = str.replace('milione', '');
 		} else if (str.indexOf('milioni') !== -1) {
-			sum *= 1000000;
+			sum *= MAGNITUDE['milione'];
 			str = str.replace('milioni', '');
 		}
 
@@ -56,10 +58,10 @@ const iWtoN = {
 	getThousands: function (str, sum) {
 		// magnitude 1.000
 		if (str.indexOf('mille') !== -1) {
-			sum += 1000;
+			sum += MAGNITUDE['mille'];
 			str = str.replace('mille', '');
 		} else if (str.indexOf('mila') !== -1) {
-			sum += this.getHundreds(str.substring(0, str.indexOf('mila')), 0).sum * 1000;
+			sum += this.getHundreds(str.substring(0, str.indexOf('mila')), 0).sum * MAGNITUDE['mille'];
 			str = str.substring(str.indexOf('mila') + 4, str.length);
 		}
 
@@ -72,7 +74,7 @@ const iWtoN = {
 	getHundreds: function (str, sum) {
 		// magnitude 100
 		if (str.indexOf('cento') !== -1) {
-			sum += (str.indexOf('cento') === 0 ? 1 : this.getUnit(str.substring(0, str.indexOf('cento')), 0).sum) * 100;
+			sum += (str.indexOf('cento') === 0 ? 1 : this.getUnit(str.substring(0, str.indexOf('cento')), 0).sum) * MAGNITUDE['cento'];
 			str = str.substring(str.indexOf('cento') + 5, str.length);
 		}
 

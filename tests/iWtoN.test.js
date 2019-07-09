@@ -104,6 +104,14 @@ describe('Converting words to numbers', () => {
   it('converts novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove', () => {
     expect(iWtoN.convert('novecentonovantanove milioni e novecentonovantanovemilanovecentonovantanove')).toEqual(999999999);
   });
+
+  it('converts meno quattordici', () => {
+    expect(iWtoN.convert('meno quattordici')).toEqual(-14);
+  });
+
+  it('converts meno due milioni e sette', () => {
+    expect(iWtoN.convert('meno due milioni e sette')).toEqual(-2000007);
+  });
 });
 
 // TODO implement test for methods getUnit, getTens, getHundred, getThousands, getMillion

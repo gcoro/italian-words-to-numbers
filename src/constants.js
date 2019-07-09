@@ -51,23 +51,17 @@ const TEN = {
 };
 
 const MAGNITUDE = {
-	mille: 1000,
-	cento: 100
+	cento: 100, // 10^2
+	mille: 1000, // 10^3
+	milione: 1000000 // 10^6
 };
 
 const UNIT_KEYS = Object.keys(UNIT);
 const TEN_KEYS = Object.keys(TEN);
 const MAGNITUDE_KEYS = Object.keys(MAGNITUDE);
 
-const JOINERS = ['e'];
-const DECIMALS = ['virgola'];
+const JOINER = 'e';
+const NEGATIVE = 'meno';
+const DECIMAL = 'virgola';
 
-const TOKEN_TYPE = {
-	UNIT: 0,
-	TEN: 1,
-	MAGNITUDE: 3,
-	DECIMAL: 4,
-	HUNDRED: 5,
-};
-
-module.exports = { UNIT, UNIT_KEYS, TEN, TEN_KEYS, MAGNITUDE, MAGNITUDE_KEYS, JOINERS, DECIMALS, TOKEN_TYPE };
+module.exports = { UNIT, UNIT_KEYS, TEN, TEN_KEYS, MAGNITUDE, MAGNITUDE_KEYS, JOINER, NEGATIVE, DECIMAL };
