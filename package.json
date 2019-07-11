@@ -8,6 +8,13 @@
   "scripts": {
     "test": "jest"
   },
+  "keywords": [
+    "numbers",
+    "translation",
+    "italian",
+    "words",
+    "javascript"
+  ],
   "devDependencies": {
     "jest": "^24.8.0"
   },
