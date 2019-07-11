@@ -2,6 +2,10 @@ const { UNIT, TEN, JOINER, NEGATIVE, TEN_KEYS, MAGNITUDE } = require('./constant
 
 const iWtoN = {
 	convert: function (words) {
+		if (!words) {
+			throw new Error('Initial string must not be empty or undefined');
+		}
+
 		return words.indexOf(NEGATIVE) === 0
 			? -this.compute(this.tokenize(words.substring(NEGATIVE.length, words.length)))
 			: this.compute(this.tokenize(words));
@@ -40,7 +44,7 @@ const iWtoN = {
 			}
 		});
 
-		if(leftover !== '') {
+		if (leftover !== '') {
 			throw new Error('Failed to completely convert string to number');
 		}
 

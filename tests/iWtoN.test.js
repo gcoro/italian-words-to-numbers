@@ -177,6 +177,14 @@ describe('Converting words to numbers', () => {
 });
 
 describe('Error cases', () => {
+	it('throws error if initial string in empty', () => {
+		expect(() => iWtoN.convert('')).toThrowError(Error);
+	});
+
+	it('throws error if initial string in undefined', () => {
+		expect(() => iWtoN.convert(undefined)).toThrowError(Error);
+	});
+
 	it('throws error if the string passed is not a number', () => {
 		expect(() => iWtoN.convert('gattini')).toThrowError(Error);
 	});
