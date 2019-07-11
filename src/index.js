@@ -26,6 +26,8 @@ const iWtoN = {
 			sum: 0
 		};
 
+		let leftover = '';
+
 		tokens.forEach(token => {
 			obj.str = token;
 
@@ -34,8 +36,13 @@ const iWtoN = {
 			} else {
 				// works up to 999.999.999
 				obj = this.getMillion(obj.str, obj.sum);
+				leftover += obj.str;
 			}
 		});
+
+		if(leftover !== '') {
+			throw new Error('Failed to completely convert string to number');
+		}
 
 		return obj.sum;
 	},
