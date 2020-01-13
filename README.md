@@ -17,7 +17,11 @@ npm install --save italian-words-to-numbers
 
 ```javascript
 const iWtoN = require('italian-words-to-numbers');
+// or
+import * as iWtoN from 'italian-words-to-numbers';
+```
 
+```javascript
 const number = iWtoN.convert('settecentosettantotto'); // => 778
 ```
 

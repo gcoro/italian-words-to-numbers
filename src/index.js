@@ -23,7 +23,7 @@ const iWtoN = {
 			}
 		});
 
-		return result;
+		return result.length > 0 ? result : [array];
 	},
 	compute: function (tokens) {
 		let obj = {
